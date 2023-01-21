@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from "./Components/Home.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Actors from "./Components/Actors.js";
+import Movies from "./Components/Movies.js";
+import Movie_Information from "./Components/Movie Information.js";
+import Profile from "./Components/Profile.js";
+import { CssBaseline } from "@mui/material";
+import NavBar from "./Components/NavBar.js";
+import useStyles from "./Components/styles";
+import './styles.css';
 
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="root">
+        <CssBaseline />
+        <NavBar />
+        <div className={classes.content}>
+          <div className={classes.toolbar}>
+            <Routes>
+              <Route path="/" element={<Movies />} />
+              <Route
+                path="/movie_Information"
+                element={<Movie_Information />}
+              />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/actors" element={<Actors />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
